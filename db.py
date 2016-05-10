@@ -18,15 +18,23 @@ def fetchall(cursor, query):
 def close(conn):
     conn.close()
 
-def get_users(cursor, id = 0):
+def get_users(cursor, id = 0, login = ''):
     q = """
 SELECT
     users.id,
     users.login,
+    users.password,
     users.fullname
 FROM users
     """
     if (id > 0):
-        q = q + " WHERE users.id = '" + str(id) + "'"
+        q = q + " WHERE users.id = %s"
+        cursor.execute(q, (id))
+        return (cursor.fetchall())
+    else:
+        if (login != ''):
+            q = q + " WHERE users.login = %s"
+            cursor.execute(q, (login))
+            return (cursor.fetchall())
     return (fetchall(cursor, q))
 

@@ -96,8 +96,8 @@
                             <!-- /input-group -->
                         </li>
                         <li><a href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a></li>
-                        <li><a href="/deals"><i class="fa fa-exchange fa-fw"></i> Deals</a></li>
-                        <li><a href="/contractors"><i class="fa fa-users fa-fw"></i> Contractors</a></li>
+                        <li><a href="/firms"><i class="fa fa-exchange fa-fw"></i> Firms</a></li>
+                        <li><a href="/contractors"><i class="fa fa-users fa-fw"></i> blank</a></li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

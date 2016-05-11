@@ -5,6 +5,7 @@ import json
 
 from r_api import r_api
 from r_login import r_login
+from r_firms import r_firms
 
 from utils import *
 
@@ -22,6 +23,7 @@ my, cursor = db.connect(config['mysql']['host'],config['mysql']['user'],config['
 
 r_api(app, config, db, my, cursor)
 r_login(app, config, db, my, cursor)
+r_firms(app, config, db, my, cursor)
 
 @app.route('/', name='index')
 def index(session):

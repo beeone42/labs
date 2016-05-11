@@ -15,6 +15,7 @@ def r_api(app, config, db, my, cursor):
         return dict(data=firms)
 
     @app.route('/api/firms/add', method='POST', name='api_add_firm')
+    @app.route('/api/firms/add/', method='POST', name='api_add_firm')
     def api_add_firm(session):
         ''' add new firm '''
 

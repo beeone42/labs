@@ -36,6 +36,7 @@ def close(conn):
 
 def get_all_firms(cursor):
     ''' get all firms details '''
+
     request_firms = """
 SELECT
     firms.id,
@@ -47,8 +48,8 @@ FROM firms
     """
     cursor.execute(request_firms)
     return cursor.fetchall()
+ 
 
-    
 def insert_firm(conn, cursor, name, representative, phone, mail):
     ''' insert new firm in db '''
 
@@ -58,7 +59,7 @@ INSERT INTO firms
 VALUES
     (%s, %s, %s, %s)
     """
-    cursor.execute(request_new_firm)
+    cursor.execute(request_new_firm, (name,representative, phone, mail))
     request_last_id = """
 SELECT LAST_INSERT_ID() AS id
     """
@@ -67,12 +68,45 @@ SELECT LAST_INSERT_ID() AS id
     tmp = cursor.fetchall()
     return tmp[0]['id']
 
+
+def update_firm(conn, cursor, id, name, representative, phone, mail):
+    ''' update firm in db '''
+
+    request_update_firm = """
+UPDATE firms SET
+    name = %s,
+    representative = %s,
+    phone = %s,
+    mail = %s
+WHERE id = %s
+    """
+    cursor.execute(request_update_firm, (name, representative, phone, mail, id))
+    conn.commit()
+    return id
+
+
+def delete_firm(conn, cursor, id):
+    ''' delete firm from db '''
+
+    request_delete_firm = """
+DELETE FROM firms
+WHERE
+    id = %s
+LIMIT 1
+    """
+    cursor.execute(request_delete_firm, id)
+    conn.commit()
+    return id
+
+
+
 #
 #   db users utils [id,login,password,fullname]
 #
 
-
 def get_users(cursor, id = 0, ):
+    ''' get user by id '''
+
     q = """
 SELECT
     users.id,

@@ -10,15 +10,11 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Activity
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Firms
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-
-
-dashboard
-
-
+							firms
                         </div>
                         <!-- /.panel-body -->
                     </div>

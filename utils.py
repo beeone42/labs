@@ -1,6 +1,7 @@
 import bottle_session
 import bottle
 
+
 def check_session(app, session):
     valid_session = session.get('valid')
     user_name = session.get('name')

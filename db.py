@@ -7,24 +7,29 @@ cursor = ''
 #   db general utils
 #
 
+
 def connect(host, user, passwd, base):
     ''' connection to db '''
 
-    conn = pymysql.connect(host=host,user=user,passwd=passwd, database=base, cursorclass=pymysql.cursors.DictCursor)
+    conn = pymysql.connect(host=host, user=user, passwd=passwd,
+                           database=base, cursorclass=pymysql.cursors.DictCursor)
     cursor = conn.cursor()
     return (conn, cursor)
+
 
 def query(cursor, query):
     ''' query in db '''
 
     cursor.execute(query)
 
+
 def fetchall(cursor, query):
     ''' display db request '''
 
     cursor.execute(query)
     return (cursor.fetchall())
-    
+
+
 def close(conn):
     ''' close connection '''
 
@@ -33,6 +38,7 @@ def close(conn):
 #
 #   db firms utils [id,name,representative,phone,mail]
 #
+
 
 def get_all_firms(cursor):
     ''' get all firms details '''
@@ -48,7 +54,7 @@ FROM firms
     """
     cursor.execute(request_firms)
     return cursor.fetchall()
- 
+
 
 def insert_firm(conn, cursor, name, representative, phone, mail):
     ''' insert new firm in db '''
@@ -59,7 +65,7 @@ INSERT INTO firms
 VALUES
     (%s, %s, %s, %s)
     """
-    cursor.execute(request_new_firm, (name,representative, phone, mail))
+    cursor.execute(request_new_firm, (name, representative, phone, mail))
     request_last_id = """
 SELECT LAST_INSERT_ID() AS id
     """
@@ -80,7 +86,8 @@ UPDATE firms SET
     mail = %s
 WHERE id = %s
     """
-    cursor.execute(request_update_firm, (name, representative, phone, mail, id))
+    cursor.execute(request_update_firm,
+                   (name, representative, phone, mail, id))
     conn.commit()
     return id
 
@@ -99,12 +106,11 @@ LIMIT 1
     return id
 
 
-
 #
 #   db users utils [id,login,password,fullname]
 #
 
-def get_users(cursor, id = 0, login = ''):
+def get_users(cursor, id=0, login=''):
     ''' get user by id or login '''
 
     q = """
@@ -125,4 +131,3 @@ FROM users
             cursor.execute(q, (login))
             return (cursor.fetchall())
     return (fetchall(cursor, q))
-

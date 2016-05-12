@@ -4,6 +4,7 @@ import db
 import json
 from utils import *
 
+
 def r_api(app, config, db, my, cursor):
     @app.route('/api/firms', method='GET', name='api_firms')
     @app.route('/api/firms/', method='GET', name='api_firms')
@@ -21,13 +22,12 @@ def r_api(app, config, db, my, cursor):
 
         check_session(app, session)
         res = db.insert_firm(my, cursor,
-            bottle.reqest.forms.get('name'),
-            bottle.reqest.forms.get('representative'),
-            bottle.reqest.forms.get('phone'),
-            bottle.reqest.forms.get('mail')         
-            )
+                             bottle.reqest.forms.get('name'),
+                             bottle.reqest.forms.get('representative'),
+                             bottle.reqest.forms.get('phone'),
+                             bottle.reqest.forms.get('mail')
+                             )
         return dict(success=True, res=res)
-
 
     # @app.route('/api/devis', method='GET', name='api_devis')
     # @app.route('/api/devis/', method='GET', name='api_devis')
@@ -97,7 +97,7 @@ def r_api(app, config, db, my, cursor):
     #                          bottle.request.forms.get('contact_tel'),
     #                          bottle.request.forms.get('contact_mail'))
     #     return dict(success=True, res=res)
-    
+
     # @app.route('/api/devis/<did:int>/<deid:int>', method='POST', name='api_devis_update')
     # def api_contractor_update(did, deid, session):
     #     assert isinstance(did, int)

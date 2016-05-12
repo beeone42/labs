@@ -4,6 +4,7 @@ import db
 import json
 import hashlib
 
+
 def r_login(app, config, db, my, cursor):
     @app.route('/login', method='GET', name='login')
     def login(session):
@@ -18,15 +19,15 @@ def r_login(app, config, db, my, cursor):
         sha.update(password)
         if (users[0]['password'] == sha.hexdigest()):
             session.regenerate()
-            session['valid']=True
-            session['name']=username
+            session['valid'] = True
+            session['name'] = username
             bottle.redirect("/")
         else:
             bottle.redirect("/login")
 
     @app.route('/logout', name='logout')
     def logout(session):
-        session['valid']=False
-        session['name']=None
+        session['valid'] = False
+        session['name'] = None
         session.destroy()
-        return bottle.template('logout', app=app, user_name='logout');
+        return bottle.template('logout', app=app, user_name='logout')

@@ -104,8 +104,8 @@ LIMIT 1
 #   db users utils [id,login,password,fullname]
 #
 
-def get_users(cursor, id = 0, ):
-    ''' get user by id '''
+def get_users(cursor, id = 0, login = ''):
+    ''' get user by id or login '''
 
     q = """
 SELECT

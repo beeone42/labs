@@ -4,7 +4,7 @@ PyMySQL==0.7.2
 Pygments==2.0.1
 SOAPpy==0.12.22
 argparse==1.2.1
-bottle==0.12.7
+bottle==0.12.20
 bottle-session==0.5
 cffi==0.8.6
 chardet==2.3.0
